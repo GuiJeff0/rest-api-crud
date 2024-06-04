@@ -24,4 +24,15 @@ public class CloudVendorService {
 		return obj.get();
 	}
 	
+	public CloudVendor insert(CloudVendor obj) {
+        return repository.save(obj);
+    }
+
+    public CloudVendor update(CloudVendor obj) {
+        return repository.save(obj);
+    }
+
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
 }

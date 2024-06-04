@@ -38,23 +38,22 @@ public class CloudVendorResource {
 		
 	}
 	
-	
 	@PostMapping
-	public String createCloudVendorDetails(@RequestBody CloudVendor cloudVendor) {
-		//this.service = service;
-		return "Cloud Vendor Created Successfully";
-	}
-	
-	@PutMapping
-	public String updateCloudVendorDetails(@RequestBody CloudVendor cloudVendor) {
-		//this.service = service;
-		return "Cloud Vendor Updated Successfully";
-	}
-	
-	@DeleteMapping("{vendorId}")
-	public String deleteCloudVendorDetails(String vendorId) {
-		this.service = null;
-		return "Cloud Vendor Deleted Successfully";
-	}
+    public ResponseEntity<CloudVendor> createCloudVendorDetails(@RequestBody CloudVendor cloudVendor) {
+        CloudVendor createdVendor = service.insert(cloudVendor);
+        return ResponseEntity.ok().body(createdVendor);
+    }
+    
+    @PutMapping
+    public ResponseEntity<CloudVendor> updateCloudVendorDetails(@RequestBody CloudVendor cloudVendor) {
+        CloudVendor updatedVendor = service.update(cloudVendor);
+        return ResponseEntity.ok().body(updatedVendor);
+    }
+    
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteCloudVendorDetails(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 	
 }
